@@ -81,7 +81,7 @@ def days_from_years(year): #Keegan
 
         elif year > 3114:
             if is_leap_year(year) == True:
-                year = abs(3114 - year)
+                year = abs((3114 - year) + 1)
                 days = (((reversed_leap_month_to_day_dict[month]) + ((year * 365) + (year // 4) - ((year // 100) - (year // 400)))) + 224) + abs(leap_day_in_month_dict[month] - day)
                 return days
             else:
