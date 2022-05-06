@@ -9,9 +9,26 @@ reversed_month_to_day_dict = {'January': 334, 'February': 303, 'March': 273, 'Ap
 reversed_leap_month_to_day_dict = {'January': 335, 'February': 304, 'March': 274, 'April': 244, 'May': 214, 'June': 182, 'July': 152, 'August': 121, 'September': 91, 'October': 60, 'November': 31, 'December': 0}
 day_in_month_dict = {'January': 31, 'February': 28, 'March': 31, 'April': 30, 'May': 31, 'June': 30, 'July': 31, 'August': 31, 'September': 30, 'October': 31, 'November': 30, 'December': 31}
 leap_day_in_month_dict = {'January': 31, 'February': 29, 'March': 31, 'April': 30, 'May': 31, 'June': 30, 'July': 31, 'August': 31, 'September': 30, 'October': 31, 'November': 30, 'December': 31}
-month_list = ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December')
+month_list = ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
 months_before_august = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 months_after_august = ['September', 'October', 'November', 'December']
+date = ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14','15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31')
+BC_or_AD = ('AD', 'BC')
+
+def check_date(day, month, year):
+    if month == 'February':
+        if day == 29:
+            if is_leap_year(year) == True:
+                return True
+            else:
+                return False
+        elif day > 29:
+            return False
+    if day == 31:
+        if day_in_month_dict[month] == 31:
+            return True
+        else:
+            return False
 
 def is_leap_year(year): #Mason
     if (year % 400 == 0) and (year % 100 == 0):
@@ -25,13 +42,15 @@ def is_leap_year(year): #Mason
 def ADBC(time):
     if time == 'BC':
         return True
-    else:
+    elif time == 'AD':
         return False
 
 
 
-def finalouptut(year, month, day, AD_or_BC): #Mason
-    number = days()
+def final_output(year, month, day, AD_or_BC): #Mason
+    if check_date(day, month, year) == False:
+        return f'{month}/{day}/{year} {AD_or_BC} does not exist'
+    number = days(year, day, AD_or_BC, month)
     baktun = number // 144000
     number %= 144000
     katun = number // 7200
