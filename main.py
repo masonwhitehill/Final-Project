@@ -3,8 +3,8 @@ from gui import *
 def main():
     window = Tk()
     window.title('Mayan Calendar Calculator')
-    window.geometry('1000x1000')
-#    window.resizable(False, False)
+    window.geometry('175x270')
+    window.resizable(False, False)
 
     widgets = GUI(window)
     window.mainloop()
